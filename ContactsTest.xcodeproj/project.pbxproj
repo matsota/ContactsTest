@@ -7,25 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F1EACE72488F54D008B185F /* NavigationCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1EACE62488F54D008B185F /* NavigationCases.swift */; };
+		8F1EACE92488FB4D008B185F /* ContactStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1EACE82488FB4D008B185F /* ContactStruct.swift */; };
+		8F1EACED2488FD6C008B185F /* UIAlertController + Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1EACEC2488FD6C008B185F /* UIAlertController + Custom.swift */; };
+		8F1EACEF2488FE15008B185F /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1EACEE2488FE15008B185F /* PersistenceService.swift */; };
+		8F1EACF12489000B008B185F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1EACF02489000B008B185F /* CoreDataManager.swift */; };
+		8F1EACF3248937CF008B185F /* UIVC + Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1EACF2248937CF008B185F /* UIVC + Custom.swift */; };
+		8F1EACF524893DB2008B185F /* ContactsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1EACF424893DB2008B185F /* ContactsManager.swift */; };
 		8F2140FF2488F41D0093A0B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2140FE2488F41D0093A0B8 /* AppDelegate.swift */; };
 		8F2141012488F41D0093A0B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2141002488F41D0093A0B8 /* SceneDelegate.swift */; };
-		8F2141032488F41D0093A0B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2141022488F41D0093A0B8 /* ViewController.swift */; };
+		8F2141032488F41D0093A0B8 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2141022488F41D0093A0B8 /* ContactsViewController.swift */; };
 		8F2141062488F41D0093A0B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F2141042488F41D0093A0B8 /* Main.storyboard */; };
 		8F2141092488F41D0093A0B8 /* ContactsTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F2141072488F41D0093A0B8 /* ContactsTest.xcdatamodeld */; };
 		8F21410B2488F4200093A0B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F21410A2488F4200093A0B8 /* Assets.xcassets */; };
 		8F21410E2488F4200093A0B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F21410C2488F4200093A0B8 /* LaunchScreen.storyboard */; };
+		8F2141172488F49B0093A0B8 /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2141162488F49B0093A0B8 /* ContactsTableViewCell.swift */; };
+		8FE9F28A248A773C004353CE /* InstantiateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE9F289248A773C004353CE /* InstantiateViewController.swift */; };
+		8FE9F28D248A78F6004353CE /* DetailContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE9F28C248A78F6004353CE /* DetailContactViewController.swift */; };
+		8FE9F291248A8E4D004353CE /* Date + Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE9F290248A8E4D004353CE /* Date + Custom.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8F1EACE62488F54D008B185F /* NavigationCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCases.swift; sourceTree = "<group>"; };
+		8F1EACE82488FB4D008B185F /* ContactStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactStruct.swift; sourceTree = "<group>"; };
+		8F1EACEC2488FD6C008B185F /* UIAlertController + Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController + Custom.swift"; sourceTree = "<group>"; };
+		8F1EACEE2488FE15008B185F /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
+		8F1EACF02489000B008B185F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		8F1EACF2248937CF008B185F /* UIVC + Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVC + Custom.swift"; sourceTree = "<group>"; };
+		8F1EACF424893DB2008B185F /* ContactsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsManager.swift; sourceTree = "<group>"; };
 		8F2140FB2488F41D0093A0B8 /* ContactsTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactsTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F2140FE2488F41D0093A0B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F2141002488F41D0093A0B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8F2141022488F41D0093A0B8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8F2141022488F41D0093A0B8 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		8F2141052488F41D0093A0B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8F2141082488F41D0093A0B8 /* ContactsTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ContactsTest.xcdatamodel; sourceTree = "<group>"; };
 		8F21410A2488F4200093A0B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8F21410D2488F4200093A0B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8F21410F2488F4200093A0B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F2141162488F49B0093A0B8 /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
+		8FE9F289248A773C004353CE /* InstantiateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstantiateViewController.swift; sourceTree = "<group>"; };
+		8FE9F28C248A78F6004353CE /* DetailContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailContactViewController.swift; sourceTree = "<group>"; };
+		8FE9F290248A8E4D004353CE /* Date + Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Custom.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +61,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F1EACE42488F513008B185F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8F1EACE62488F54D008B185F /* NavigationCases.swift */,
+				8F1EACEC2488FD6C008B185F /* UIAlertController + Custom.swift */,
+				8F1EACF2248937CF008B185F /* UIVC + Custom.swift */,
+				8FE9F290248A8E4D004353CE /* Date + Custom.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		8F1EACE52488F518008B185F /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				8F1EACE82488FB4D008B185F /* ContactStruct.swift */,
+				8F1EACF02489000B008B185F /* CoreDataManager.swift */,
+				8F1EACF424893DB2008B185F /* ContactsManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		8F2140F22488F41D0093A0B8 = {
 			isa = PBXGroup;
 			children = (
@@ -60,7 +103,12 @@
 			children = (
 				8F2140FE2488F41D0093A0B8 /* AppDelegate.swift */,
 				8F2141002488F41D0093A0B8 /* SceneDelegate.swift */,
-				8F2141022488F41D0093A0B8 /* ViewController.swift */,
+				8F1EACEE2488FE15008B185F /* PersistenceService.swift */,
+				8FE9F289248A773C004353CE /* InstantiateViewController.swift */,
+				8F1EACE52488F518008B185F /* Managers */,
+				8F1EACE42488F513008B185F /* Helpers */,
+				8F2141152488F4870093A0B8 /* Contacts */,
+				8FE9F28B248A78DE004353CE /* DetailContact */,
 				8F2141042488F41D0093A0B8 /* Main.storyboard */,
 				8F21410A2488F4200093A0B8 /* Assets.xcassets */,
 				8F21410C2488F4200093A0B8 /* LaunchScreen.storyboard */,
@@ -68,6 +116,23 @@
 				8F2141072488F41D0093A0B8 /* ContactsTest.xcdatamodeld */,
 			);
 			path = ContactsTest;
+			sourceTree = "<group>";
+		};
+		8F2141152488F4870093A0B8 /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				8F2141022488F41D0093A0B8 /* ContactsViewController.swift */,
+				8F2141162488F49B0093A0B8 /* ContactsTableViewCell.swift */,
+			);
+			path = Contacts;
+			sourceTree = "<group>";
+		};
+		8FE9F28B248A78DE004353CE /* DetailContact */ = {
+			isa = PBXGroup;
+			children = (
+				8FE9F28C248A78F6004353CE /* DetailContactViewController.swift */,
+			);
+			path = DetailContact;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,10 +206,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F2141172488F49B0093A0B8 /* ContactsTableViewCell.swift in Sources */,
+				8F1EACE92488FB4D008B185F /* ContactStruct.swift in Sources */,
+				8FE9F291248A8E4D004353CE /* Date + Custom.swift in Sources */,
 				8F2141092488F41D0093A0B8 /* ContactsTest.xcdatamodeld in Sources */,
-				8F2141032488F41D0093A0B8 /* ViewController.swift in Sources */,
+				8FE9F28A248A773C004353CE /* InstantiateViewController.swift in Sources */,
+				8F1EACE72488F54D008B185F /* NavigationCases.swift in Sources */,
+				8F1EACF3248937CF008B185F /* UIVC + Custom.swift in Sources */,
+				8F1EACEF2488FE15008B185F /* PersistenceService.swift in Sources */,
+				8F2141032488F41D0093A0B8 /* ContactsViewController.swift in Sources */,
 				8F2140FF2488F41D0093A0B8 /* AppDelegate.swift in Sources */,
+				8FE9F28D248A78F6004353CE /* DetailContactViewController.swift in Sources */,
 				8F2141012488F41D0093A0B8 /* SceneDelegate.swift in Sources */,
+				8F1EACED2488FD6C008B185F /* UIAlertController + Custom.swift in Sources */,
+				8F1EACF524893DB2008B185F /* ContactsManager.swift in Sources */,
+				8F1EACF12489000B008B185F /* CoreDataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
