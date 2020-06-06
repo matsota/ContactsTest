@@ -10,6 +10,44 @@ import UIKit
 
 extension UIAlertController {
     
+    //MARK: Alert with 2 buttons and 2 textfields
+    static func createNewContact(title: String, success: @escaping(ContactStruct, ContactsData) -> Void) -> (UIAlertController) {
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        alert.addTextField { (textField: UITextField) in
+            textField.keyboardType = .namePhonePad
+            textField.placeholder = "name"
+        }
+        alert.addTextField { (textField: UITextField) in
+            textField.keyboardType = .namePhonePad
+            textField.placeholder = "surname"
+        }
+        alert.addTextField { (textField: UITextField) in
+            textField.keyboardType = .emailAddress
+            textField.placeholder = "email"
+        }
+        alert.addTextField { (textField: UITextField) in
+            textField.keyboardType = .phonePad
+            textField.placeholder = "phone"
+        }
+        
+        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Создать", style: .default, handler: { action in
+            let name = alert.textFields?.first?.text ?? "no name",
+            surname = alert.textFields?[1].text ?? "no surname",
+            mail = alert.textFields?[2].text ?? "no mail",
+            phone = alert.textFields?.last?.text ?? "no phone"
+            
+            let data = ContactStruct(name: name, surname: surname, mail: mail, phone: phone, image: Data())
+            let contactData = ContactsData()
+            contactData.name = name
+            contactData.surname = surname
+            contactData.mail = mail
+            contactData.phone = phone
+            success(data, contactData)
+        }))
+        return alert
+    }
+    
     //MARK: - Ok && Deny
     static func classic(title: String, message: String, success: @escaping() -> Void) -> (UIAlertController){
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)

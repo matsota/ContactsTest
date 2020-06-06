@@ -15,11 +15,10 @@ class ContactsViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         restoreDataActivityIndicator.stopAnimating()
+        mySearchBar.delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        hideKeyboardWhenTappedAround()
-        setupSearchBar()
         
         CoreDataManager.shared.fetchContactData(success: { (data) in
             self.contactsData = data.sorted(by: { (a, z) -> Bool in
@@ -35,28 +34,18 @@ class ContactsViewController: UIViewController{
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let cell = sender as? ContactsTableViewCell {
-            if segue.identifier == NavigationCases.Transition.contact_DetailContact.rawValue, let destination = segue.destination as? DetailContactViewController, let index = tableView.indexPath(for: cell)?.row {
+        if let _ = sender as? ContactsTableViewCell {
+            if segue.identifier == NavigationCases.Transition.contact_DetailContact.rawValue, let destination = segue.destination as? DetailContactViewController, let index = tableView.indexPathsForSelectedRows?.first  {
                 var contactData: ContactsData
-                if isFiltering == true {
-                    contactData = filteringContactsBySearchController[index]
+                if searchActive, mySearchBar.text != "" {
+                    contactData = filteredContactsData[index.row]
                     destination.contactData = contactData
                 }else{
-                    contactData = contactsData[index]
+                    contactData = contactsData[index.row]
                     destination.contactData = contactData
                 }
             }
         }
-        //        if segue.identifier == NavigationCases.Transition.contact_DetailContact.rawValue, let detailVC = segue.destination as? DetailContactViewController, let index = tableView.indexPathsForSelectedRows?.first?.row {
-        //            var contactData: ContactsData
-        //            if isFiltering == true {
-        //                contactData = filteringContactsBySearchController[index]
-        //                detailVC.contactData = contactData
-        //            }else{
-        //                contactData = contactsData[index]
-        //                detailVC.contactData = contactData
-        //            }
-        //        }
     }
     
     //MARK: - Reset to default state
@@ -87,28 +76,25 @@ class ContactsViewController: UIViewController{
     }
     
     //MARK: - Private Implementation
-    var contactsData = [ContactsData]()
-    private var filteringContactsBySearchController = [ContactsData]()
-    private var searchController = UISearchController(searchResultsController: nil)
-    private var searchBarIsEmpty: Bool {
-        guard let text = searchController.searchBar.text else {return false}
-        return text.isEmpty
-    }
-    private var isFiltering: Bool {
-        return searchController.isActive && !searchBarIsEmpty
-    }
+    private var contactsData = [ContactsData]()
+    private var filteredContactsData = [ContactsData]()
+    private var searchActive : Bool = false
+    
+    //MARK: Search Bar
+    @IBOutlet private weak var mySearchBar: UISearchBar!
+    
     
     //MARK: Table View
     @IBOutlet private weak var tableView: UITableView!
     
     //MARK: Button
-    @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet private weak var resetButton: UIButton!
     
     //MARK: Activity Indicator
     @IBOutlet private weak var restoreDataActivityIndicator: UIActivityIndicatorView!
     
     //MARK: Constraint
-    @IBOutlet weak var tableViewBottonConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var tableViewBottonConstraint: NSLayoutConstraint!
     
 }
 
@@ -126,8 +112,8 @@ class ContactsViewController: UIViewController{
 extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isFiltering {
-            return filteringContactsBySearchController.count
+        if searchActive {
+            return filteredContactsData.count
         }
         return contactsData.count
         
@@ -138,10 +124,10 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
         cell.delegate = self
         var fetch: ContactsData
         
-        if isFiltering {
-            fetch = self.filteringContactsBySearchController[indexPath.row]
+        if searchActive {
+            fetch = filteredContactsData[indexPath.row]
         }else{
-            fetch = self.contactsData[indexPath.row]
+            fetch = contactsData[indexPath.row]
         }
         
         let name = fetch.name,
@@ -163,15 +149,15 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
     private func deleteAction(at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .destructive, title: "Удалить") { (action, view, complition) in
             
-            if self.isFiltering {
+            if self.searchActive {
                 self.contactsData.removeAll { (data) -> Bool in
-                    if data.phone == self.filteringContactsBySearchController[indexPath.row].phone{
-                        CoreDataManager.shared.deleteCertainContact(contact: self.filteringContactsBySearchController[indexPath.row])
+                    if data.phone == self.filteredContactsData[indexPath.row].phone{
+                        CoreDataManager.shared.deleteCertainContact(contact: self.filteredContactsData[indexPath.row])
                         return true
                     }
                     return false
                 }
-                self.filteringContactsBySearchController.remove(at: indexPath.row)
+                self.filteredContactsData.remove(at: indexPath.row)
             }else{
                 CoreDataManager.shared.deleteCertainContact(contact: self.contactsData[indexPath.row])
                 self.contactsData.remove(at: indexPath.row)
@@ -200,36 +186,37 @@ extension ContactsViewController: ContactsTableViewCellDelegate {
 }
 
 //MARK: Search bar
-extension ContactsViewController: UISearchResultsUpdating {
+extension ContactsViewController: UISearchBarDelegate {
     
-    func updateSearchResults(for searchController: UISearchController) {
-        filter(search: searchController.searchBar.text!)
-    }
-    
-    private func filter(search text: String) {
-        filteringContactsBySearchController = contactsData.filter({ (data: ContactsData) -> Bool in
-            if let name = data.name, let surname = data.surname {
-                let strings = [name + " " + surname, surname + " " + name ]
-                return strings.contains{ string -> Bool in
-                    string.lowercased().contains(text.lowercased())
-                }
-            }
-            return false
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredContactsData = contactsData.filter({ (data) -> Bool in
+            let string: NSString = data.name!.lowercased() as NSString,
+            range = string.range(of: searchText.lowercased(), options: .literal)
+            print(range)
+            return range.location != NSNotFound
         })
-        tableView.reloadData()
+        if filteredContactsData.count == 0 {
+            searchActive = false
+        }else{
+            searchActive = true
+        }
+        self.tableView.reloadData()
     }
     
-    private func setupSearchBar() {
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.hidesNavigationBarDuringPresentation = false
-        let searchBar = searchController.searchBar
-        searchBar.placeholder = "Начните Поиск"
-        searchBar.showsCancelButton = false
-        searchBar.enablesReturnKeyAutomatically = false
-        searchBar.returnKeyType = .done
-        
-        tableView.tableHeaderView = searchBar
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchActive = true
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchActive = false
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false
     }
     
 }
@@ -243,7 +230,6 @@ private extension ContactsViewController {
         UIView.animate(withDuration: duration.doubleValue) {
             self.view.layoutIfNeeded()
         }
-        setupSearchBar()
     }
     
     @objc func keyboardWillHide(notification: Notification) {
@@ -253,4 +239,5 @@ private extension ContactsViewController {
             self.view.layoutIfNeeded()
         }
     }
+    
 }

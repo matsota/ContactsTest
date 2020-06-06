@@ -21,8 +21,15 @@
                                 <color key="textColor" red="0.21396377680000001" green="0.209915936" blue="0.40786278250000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <searchBar contentMode="redraw" placeholder="Начните поиск" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZcA-pD-1pC">
+                                <rect key="frame" x="14" y="87" width="386" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="TyG-Au-qle"/>
+                                </connections>
+                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Xp-aE-P18">
-                                <rect key="frame" x="14" y="101" width="386" height="683"/>
+                                <rect key="frame" x="14" y="143" width="386" height="641"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ContactsTVCell" rowHeight="117" id="SIr-Rx-ycr" customClass="ContactsTableViewCell" customModule="ContactsTest" customModuleProvider="target">
@@ -121,9 +128,12 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rfL-7j-2dV" secondAttribute="trailing" constant="14" id="74X-q2-vpI"/>
                             <constraint firstItem="hhn-Hd-WZD" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="BhM-yN-Z6m"/>
                             <constraint firstItem="hhn-Hd-WZD" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="G1q-bt-xqr"/>
-                            <constraint firstItem="6Xp-aE-P18" firstAttribute="top" secondItem="xIe-3v-Yso" secondAttribute="bottom" constant="14" id="KiW-E1-Pv2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZcA-pD-1pC" secondAttribute="trailing" constant="14" id="GJf-It-yMJ"/>
                             <constraint firstItem="6Xp-aE-P18" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="14" id="NNn-OH-yBD"/>
+                            <constraint firstItem="ZcA-pD-1pC" firstAttribute="top" secondItem="xIe-3v-Yso" secondAttribute="bottom" id="SSH-UP-vyj"/>
                             <constraint firstItem="xIe-3v-Yso" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="14" id="TYj-gu-YEX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="leading" secondItem="ZcA-pD-1pC" secondAttribute="leading" constant="-14" id="VaW-Yi-gkt"/>
+                            <constraint firstItem="ZcA-pD-1pC" firstAttribute="bottom" secondItem="6Xp-aE-P18" secondAttribute="top" id="gf5-Rk-1aW"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xIe-3v-Yso" secondAttribute="trailing" constant="14" id="jTL-Qy-KDV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="rfL-7j-2dV" secondAttribute="bottom" constant="14" id="jV9-zz-WLV"/>
                             <constraint firstItem="rfL-7j-2dV" firstAttribute="top" secondItem="6Xp-aE-P18" secondAttribute="bottom" constant="14" id="o5U-pc-X1V"/>
@@ -137,6 +147,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="mySearchBar" destination="ZcA-pD-1pC" id="zPj-sg-ZXM"/>
                         <outlet property="resetButton" destination="rfL-7j-2dV" id="4Wd-dJ-wAs"/>
                         <outlet property="restoreDataActivityIndicator" destination="hhn-Hd-WZD" id="jwF-TH-T27"/>
                         <outlet property="tableView" destination="6Xp-aE-P18" id="mpG-SC-ylv"/>

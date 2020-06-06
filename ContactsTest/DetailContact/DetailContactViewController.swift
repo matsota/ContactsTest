@@ -16,7 +16,6 @@ class DetailContactViewController: UIViewController {
     //MARK: - Override
     override func viewDidLoad() {
         super.viewDidLoad()
-        hideKeyboardWhenTappedAround()
         // - image
         if contactData.imageData != nil {
             self.imageView.image = UIImage(data: contactData.imageData!)
@@ -28,13 +27,17 @@ class DetailContactViewController: UIViewController {
         imageView.layer.borderWidth = 2
         
         // - textfields
-        nameTextField.text = contactData.name
-        surnameTextField.text = contactData.surname
-        emailTextField.text = contactData.mail
-        phoneTextField.text = contactData.phone
+        if let _ = contactData.phone {
+            nameTextField.text = contactData.name
+            surnameTextField.text = contactData.surname
+            emailTextField.text = contactData.mail
+            phoneTextField.text = contactData.phone
+        }
+        
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        hideKeyboardWhenTappedAround()
     }
     
     //MARK: - Save changes
